@@ -1,7 +1,9 @@
 import express from "express"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
+import userRouter from "./routes/user.route.js"
 dotenv.config();
+
 mongoose.connect(process.env.MONGO).then(()=>{
     console.log("Connected to DB")
 })
@@ -10,10 +12,11 @@ mongoose.connect(process.env.MONGO).then(()=>{
 })
 const app=express()
 
-app.get("/",(req,res)=>{
-    res.send("welcome to backend")
-})
+
+
 
 app.listen(3000,()=>{
     console.log("Server is running on 3000")
 })
+
+app.use("/user",userRouter)
